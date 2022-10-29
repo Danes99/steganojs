@@ -1,4 +1,5 @@
 // Import built-in modules
+import { existsSync, mkdirSync } from 'fs';
 import { readFile, writeFile } from 'fs/promises';
 
 // Import downloaded modules
@@ -12,7 +13,13 @@ import { reveal, conceal } from '../src';
 // Import custom functions
 import { generateRandomPNG } from './utils';
 
-const readTestPNG = async (): Promise<Buffer> => await readFile(IMAGE_1);
+// Constants: Image folders location
+const IMAGE_FOLDER_LOCATION = `${__dirname}/img`;
+const IMAGE_OUTPUT_FOLDER_LOCATION = IMAGE_FOLDER_LOCATION + '/out';
+
+// Constants: Images location
+const IMAGE_INPUT_1 = IMAGE_FOLDER_LOCATION + '/img1.png';
+const IMAGE_OUTPUT_1 = IMAGE_OUTPUT_FOLDER_LOCATION + '/test.png';
 
 // Customs functions
 const characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -26,22 +33,21 @@ const generateRandomString = (length: number = 30) => {
   return result;
 };
 
-const IMAGE_FOLDER_LOCATION = `${__dirname}/img`;
-const IMAGE_1 = IMAGE_FOLDER_LOCATION + '/img2.png';
+// const readTestPNG = async (): Promise<Buffer> => await readFile(IMAGE_INPUT_1);
 
 describe('Test PNG', function () {
-  this.timeout(10000);
+  this.timeout(1000000);
 
   it('Can encode a string', async () => {
     for (let i = 0; i < 10; i++) {
       const message = generateRandomString();
-      const file = await readTestPNG();
+      const file = await readFile(IMAGE_INPUT_1);
 
       // Encode message in file
       const encodedFile = conceal(file, message);
       const result = reveal(encodedFile);
 
-      expect(result.toString()).to.equal(message);
+      expect(result.toString(), 'Message do not correspond').to.equal(message);
 
       // Test compare files' hash
       const targetFileHash: Hash = createHash('sha256').update(file);
@@ -54,17 +60,22 @@ describe('Test PNG', function () {
   it('Can write and read file', async () => {
     for (let i = 0; i < 10; i++) {
       const message = generateRandomString();
-      const file = await readTestPNG();
-      const testFilePath = `${IMAGE_FOLDER_LOCATION}/test.png`;
+      const file = await readFile(IMAGE_INPUT_1);
+      const testFilePath = IMAGE_OUTPUT_1;
 
       // Encode message in file
       const encodedFile = conceal(file, message);
+
+      if (!existsSync(IMAGE_OUTPUT_FOLDER_LOCATION)) {
+        mkdirSync(IMAGE_OUTPUT_FOLDER_LOCATION, { recursive: true });
+      }
+
       await writeFile(testFilePath, encodedFile);
 
       const fileToRead = await readFile(testFilePath);
       const result = reveal(fileToRead);
 
-      expect(result.toString()).to.equal(message);
+      expect(result.toString(), 'Message do not correspond').to.equal(message);
 
       // Test compare files' hash
       const targetFileHash: Hash = createHash('sha256').update(file);
