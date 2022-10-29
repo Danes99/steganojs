@@ -1,0 +1,56 @@
+{
+  "name": "steganojs",
+  "version": "1.0.0",
+  "description": "Steganography package for PNG files. Can be used in web browser and backend code.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.{ts,js}\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/Danes99/steganojs/.git"
+  },
+  "keywords": [
+    "Steganography",
+    "steganography",
+    "LSB",
+    "Lower Significant Bit",
+    "Conceal",
+    "Hide",
+    "PNG"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/Danes99/steganojs/-/issues"
+  },
+  "homepage": "https://gitlab.com/Danes99/steganojs/-/blob/main/README.md",
+  "devDependencies": {
+    "@types/chai": "^4.3.3",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.3",
+    "@types/pngjs": "^6.0.1",
+    "chai": "^4.3.6",
+    "mocha": "^10.1.0",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "pngjs": "^6.0.0"
+  }
+}
