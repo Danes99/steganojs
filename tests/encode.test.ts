@@ -4,6 +4,7 @@ import { existsSync, mkdirSync } from 'fs';
 import { readFile, writeFile } from 'fs/promises';
 
 // Import downloaded modules
+import { parse as YAMLparse } from 'yaml';
 import { expect } from 'chai';
 import { createHash, Hash } from 'crypto';
 
@@ -11,7 +12,7 @@ import { createHash, Hash } from 'crypto';
 import { reveal, conceal } from '../src';
 
 // Import custom functions
-import { generateRandomJSON, generateRandomString } from './utils';
+import { generateRandomJSON, generateRandomString, generateRandomYAML } from './utils';
 
 // Constants: Image folders location
 const IMAGE_FOLDER_LOCATION = `${__dirname}/img`;
@@ -86,6 +87,31 @@ describe('Test PNG', function () {
       // Test: compare Javascript Object from JSON string
       const objectMessage = JSON.parse(message);
       const objectResult = JSON.parse(result.toString());
+      deepStrictEqual(objectMessage, objectResult);
+
+      // Test compare files' hash
+      const targetFileHash: Hash = createHash('sha256').update(file);
+      const testFileHash: Hash = createHash('sha256').update(encodedFile);
+
+      expect(testFileHash, "Files' hashes should not be the same.").not.equal(targetFileHash);
+    }
+  });
+
+  it('Can encode a YAML', async () => {
+    for (let i = 0; i < 10; i++) {
+      const message = generateRandomYAML();
+      const file = await readFile(IMAGE_INPUT_1);
+
+      // Encode message in file
+      const encodedFile = conceal(file, message);
+      const result = reveal(encodedFile);
+
+      // Test: compare raw string
+      expect(result.toString(), 'Message do not correspond').to.equal(message);
+
+      // Test: compare Javascript Object from JSON string
+      const objectMessage = YAMLparse(message);
+      const objectResult = YAMLparse(result.toString());
       deepStrictEqual(objectMessage, objectResult);
 
       // Test compare files' hash

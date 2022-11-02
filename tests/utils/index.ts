@@ -1,4 +1,5 @@
 // Import downloaded modules
+import { stringify as YAMLstringify } from 'yaml';
 import { PNG } from 'pngjs';
 
 // Customs functions
@@ -59,3 +60,5 @@ export const generateRandomJavascriptObject = (): object => {
 };
 
 export const generateRandomJSON = (): string => JSON.stringify(generateRandomJavascriptObject());
+
+export const generateRandomYAML = (): string => YAMLstringify(generateRandomJavascriptObject());
