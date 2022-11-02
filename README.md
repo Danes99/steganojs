@@ -78,9 +78,14 @@ If you need help, please go to the [project issue tracker](https://gitlab.com/Da
 ### Tests
 
 - Add Buffer tests
-- Add JSON/YAML/XML/TOML encoding tests
+- Add XML/TOML encoding tests
 - Add tests on dynamic generated PNG file and buffers
 - Add [code coverage analysis](https://about.codecov.io/)
+
+### CI/CD Pipeline
+
+- Add automatic upload to npmjs.org
+- Add automatic semantic version numbering for small updates
 
 ### README
 
