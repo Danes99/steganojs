@@ -1,6 +1,18 @@
 // Import downloaded modules
 import { PNG } from 'pngjs';
 
+// Customs functions
+const characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+const charactersLength: number = characters.length;
+
+export const generateRandomString = (length: number = 30) => {
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+
 export const generateRandomPNG = (): Buffer => {
   const height = 1000;
   const width = 1000;
@@ -33,3 +45,17 @@ export const generateRandomPNG = (): Buffer => {
 
   return png.data;
 };
+
+export const generateRandomJavascriptObject = (): object => {
+  const randomObject: any = {};
+
+  for (let i = 0; i < 100; i++) {
+    const key: string = generateRandomString();
+    const value: string = generateRandomString();
+    randomObject[key] = value;
+  }
+
+  return randomObject as Object;
+};
+
+export const generateRandomJSON = (): string => JSON.stringify(generateRandomJavascriptObject());

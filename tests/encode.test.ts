@@ -1,9 +1,9 @@
 // Import built-in modules
+import { deepStrictEqual } from 'assert';
 import { existsSync, mkdirSync } from 'fs';
 import { readFile, writeFile } from 'fs/promises';
 
 // Import downloaded modules
-// import { PNG } from 'pngjs';
 import { expect } from 'chai';
 import { createHash, Hash } from 'crypto';
 
@@ -11,7 +11,7 @@ import { createHash, Hash } from 'crypto';
 import { reveal, conceal } from '../src';
 
 // Import custom functions
-import { generateRandomPNG } from './utils';
+import { generateRandomJSON, generateRandomString } from './utils';
 
 // Constants: Image folders location
 const IMAGE_FOLDER_LOCATION = `${__dirname}/img`;
@@ -20,20 +20,6 @@ const IMAGE_OUTPUT_FOLDER_LOCATION = IMAGE_FOLDER_LOCATION + '/out';
 // Constants: Images location
 const IMAGE_INPUT_1 = IMAGE_FOLDER_LOCATION + '/img1.png';
 const IMAGE_OUTPUT_1 = IMAGE_OUTPUT_FOLDER_LOCATION + '/test.png';
-
-// Customs functions
-const characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-var charactersLength: number = characters.length;
-
-const generateRandomString = (length: number = 30) => {
-  let result = '';
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-};
-
-// const readTestPNG = async (): Promise<Buffer> => await readFile(IMAGE_INPUT_1);
 
 describe('Test PNG', function () {
   this.timeout(1000000);
@@ -81,7 +67,32 @@ describe('Test PNG', function () {
       const targetFileHash: Hash = createHash('sha256').update(file);
       const testFileHash: Hash = createHash('sha256').update(encodedFile);
 
-      expect(testFileHash).not.equal(targetFileHash);
+      expect(testFileHash, "Files' hashes should not be the same.").not.equal(targetFileHash);
+    }
+  });
+
+  it('Can encode a JSON', async () => {
+    for (let i = 0; i < 10; i++) {
+      const message = generateRandomJSON();
+      const file = await readFile(IMAGE_INPUT_1);
+
+      // Encode message in file
+      const encodedFile = conceal(file, message);
+      const result = reveal(encodedFile);
+
+      // Test: compare raw string
+      expect(result.toString(), 'Message do not correspond').to.equal(message);
+
+      // Test: compare Javascript Object from JSON string
+      const objectMessage = JSON.parse(message);
+      const objectResult = JSON.parse(result.toString());
+      deepStrictEqual(objectMessage, objectResult);
+
+      // Test compare files' hash
+      const targetFileHash: Hash = createHash('sha256').update(file);
+      const testFileHash: Hash = createHash('sha256').update(encodedFile);
+
+      expect(testFileHash, "Files' hashes should not be the same.").not.equal(targetFileHash);
     }
   });
 });
