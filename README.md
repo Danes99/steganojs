@@ -103,6 +103,8 @@ You can also document commands to [lint](https://stackoverflow.com/questions/850
 
 This module is a Typescript refactoring of the initial [steggy](https://github.com/willclarktech/steggy) JavaScript module by [Will Clark](https://github.com/willclarktech).
 
+I want to thank [C-J Kihl](https://medium.com/@carljohan.kihl?source=post_page-----44fe7164964c--------------------------------) for his [article](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c) on how to publish a TypeScript NPM package.
+
 ## License
 
 [AGPL 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html)
