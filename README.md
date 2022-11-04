@@ -84,7 +84,6 @@ If you need help, please go to the [project issue tracker](https://gitlab.com/Da
 
 ### CI/CD Pipeline
 
-- Add automatic upload to npmjs.org
 - Add automatic semantic version numbering for small updates
 
 ### README
@@ -103,7 +102,7 @@ You can also document commands to [lint](https://stackoverflow.com/questions/850
 
 This module is a Typescript refactoring of the initial [steggy](https://github.com/willclarktech/steggy) JavaScript module by [Will Clark](https://github.com/willclarktech).
 
-I want to thank [C-J Kihl](https://medium.com/@carljohan.kihl?source=post_page-----44fe7164964c--------------------------------) for his [article](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c) on how to publish a TypeScript NPM package.
+I want to thank [C-J Kihl](https://medium.com/@carljohan.kihl?source=post_page-----44fe7164964c--------------------------------) for his [article](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c) on how to publish a TypeScript NPM package and webbureaucrat for his help with [Continuously Deploying an NPM Package with GitLab CI/CD](https://webbureaucrat.gitlab.io/posts/continuously-deploying-an-npm-package-with-gitlab-ci-cd/).
 
 ## License
 
