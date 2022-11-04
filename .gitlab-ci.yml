@@ -29,20 +29,20 @@ print-info:
 
 build:
   stage: build
+  artifacts:
+    untracked: true
   image: node:18.12-alpine3.15
   script:
     - npm ci
     - npm run lint
     - npm run format
-    # - npm run test
 
 test:
   stage: test
+  dependencies:
+    - build
   image: node:18.12-alpine3.15
   script:
-    # - npm ci
-    # - npm run lint
-    # - npm run format
     - npm run test
 # int:
 #   stage: int
