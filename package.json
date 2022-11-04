@@ -1,6 +1,6 @@
 {
   "name": "steganojs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Steganography package for PNG files. Can be used in web browser and backend code.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
