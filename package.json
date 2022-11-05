@@ -1,6 +1,6 @@
 {
   "name": "steganojs",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Steganography package for PNG files. Can be used in web browser and backend code.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -36,7 +36,7 @@
   "bugs": {
     "url": "https://gitlab.com/Danes99/steganojs/-/issues"
   },
-  "homepage": "https://gitlab.com/Danes99/steganojs/-/blob/main/README.md",
+  "homepage": "https://gitlab.com/Danes99/steganojs/",
   "devDependencies": {
     "@types/chai": "^4.3.3",
     "@types/mocha": "^10.0.0",
