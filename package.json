@@ -1,6 +1,6 @@
 {
   "name": "steganojs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Steganography package for PNG files. Can be used in web browser and backend code.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -31,8 +31,8 @@
     "Hide",
     "PNG"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Danes99",
+  "license": "AGPL 3.0",
   "bugs": {
     "url": "https://gitlab.com/Danes99/steganojs/-/issues"
   },
