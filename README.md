@@ -10,11 +10,17 @@ There is currently only support for .png files.
 
 ## Badges
 
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+[![Npm package version](https://badgen.net/npm/v/steganojs)](https://npmjs.com/package/steganojs)
+
+[![Minimum node.js version](https://badgen.net/npm/node/steganojs)](https://npmjs.com/package/steganojs)
+
+[![Npm package license](https://badgen.net/npm/license/steganojs)](https://npmjs.com/package/steganojs)
+
+[![Npm package total downloads](https://badgen.net/npm/dt/steganojs)](https://npmjs.com/package/steganojs)
 
 ## Visuals
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+![LSB Steganography](https://www.secplicity.org/wp-content/uploads/2017/06/Hidden.png)
 
 ## Installation
 
@@ -86,10 +92,6 @@ If you need help, please go to the [project issue tracker](https://gitlab.com/Da
 
 - Add automatic semantic version numbering for small updates
 
-### README
-
-- Add [shields](https://github.com/badges/shields/blob/master/README.md), [shields.io](https://shields.io/)
-
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -103,6 +105,8 @@ You can also document commands to [lint](https://stackoverflow.com/questions/850
 This module is a Typescript refactoring of the initial [steggy](https://github.com/willclarktech/steggy) JavaScript module by [Will Clark](https://github.com/willclarktech).
 
 I want to thank [C-J Kihl](https://medium.com/@carljohan.kihl?source=post_page-----44fe7164964c--------------------------------) for his [article](https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c) on how to publish a TypeScript NPM package and webbureaucrat for his help with [Continuously Deploying an NPM Package with GitLab CI/CD](https://webbureaucrat.gitlab.io/posts/continuously-deploying-an-npm-package-with-gitlab-ci-cd/).
+
+I want to thank [Naereen](https://github.com/Naereen/) for his document about [README.md badges](https://github.com/Naereen/badges/blob/master/README.md).
 
 ## License
 
