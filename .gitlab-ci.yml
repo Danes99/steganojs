@@ -38,6 +38,7 @@ build:
     - npm ci
     - npm run lint
     - npm run format
+    - npm run build
 
 test:
   stage: test
@@ -49,8 +50,8 @@ test:
 
 deploy:
   stage: deploy
-  dependencies:
-    - build
+  # dependencies:
+  #   - build
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
     - npm publish

@@ -9,7 +9,8 @@ import { expect } from 'chai';
 import { createHash, Hash } from 'crypto';
 
 // Import functions to test
-import { reveal, conceal } from '../src';
+// import { reveal, conceal } from '../src';
+import { reveal, conceal } from '../lib';
 
 // Import custom functions
 import { generateRandomJSON, generateRandomString, generateRandomYAML } from './utils';
