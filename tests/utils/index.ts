@@ -2,9 +2,16 @@
 import { stringify as YAMLstringify } from 'yaml';
 import { PNG } from 'pngjs';
 
-// Customs functions
+// Constants: generateRandomString()
 const characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 const charactersLength: number = characters.length;
+
+// Constants: generateRandomPNG()
+// const MINIMUM_WIDTH: number = 200;
+// const MAXIMUM_WIDTH: number = 200;
+// const MINIMUM_HEIGHT: number = 200;
+// const MAXIMUM_HEIGHT: number = 200;
+// const API_BASE_URI_GENERATE_RANDOM_PNG = 'https://picsum.photos/';
 
 export const generateRandomString = (length: number = 30) => {
   let result = '';
@@ -14,38 +21,26 @@ export const generateRandomString = (length: number = 30) => {
   return result;
 };
 
-export const generateRandomPNG = (): Buffer => {
-  const height = 1000;
-  const width = 1000;
+// export const generateRandomPNG: () => Promise<Buffer> = async (width?: number, height?: number) => {
+//   width =
+//     width && width > MINIMUM_WIDTH && width < MAXIMUM_WIDTH
+//       ? width
+//       : Math.floor(Math.random() * (MAXIMUM_WIDTH - MINIMUM_WIDTH) + MINIMUM_WIDTH);
 
-  const baseOptions = {
-    fill: true,
-    height,
-    width,
-  };
+//   height =
+//     height && height > MINIMUM_HEIGHT && height < MAXIMUM_HEIGHT
+//       ? height
+//       : Math.floor(Math.random() * (MAXIMUM_HEIGHT - MINIMUM_HEIGHT) + MINIMUM_HEIGHT);
 
-  const packerOptions = {
-    bgColor: {
-      red: 100,
-      green: 100,
-      blue: 100,
-    },
-  };
+//   // const URI: string = `${API_BASE_URI_GENERATE_RANDOM_PNG}${width}/${height}`;
+//   const URI: string = `${API_BASE_URI_GENERATE_RANDOM_PNG}${600}/${600}.png`;
 
-  const pngOptions = { ...baseOptions, ...packerOptions };
+//   const response = await fetch(URI);
+//   const blob: Blob = await response.blob();
+//   const buffer: Buffer = Buffer.from(await blob.arrayBuffer());
 
-  const png: PNG = new PNG(pngOptions);
-
-  // The property png.data will contain an array of int8
-  //   for (var i = 0; i < height * width; i++) {
-  //     png.data[i * 4 + 0] = (Math.random() * 256) | 0; // Red
-  //     png.data[i * 4 + 1] = (Math.random() * 256) | 0; // Green
-  //     png.data[i * 4 + 2] = (Math.random() * 256) | 0; // Blue
-  //     png.data[i * 4 + 3] = 90; // alpha (transparency)
-  //   }
-
-  return png.data;
-};
+//   return buffer;
+// };
 
 export const generateRandomJavascriptObject = (): object => {
   const randomObject: any = {};

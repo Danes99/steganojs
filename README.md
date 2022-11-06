@@ -31,7 +31,7 @@ To conceal a message in an image:
 import { readFileSync, writeFileSync } from 'fs';
 
 // Import module function
-import { conceal } from '../src';
+import { conceal } from 'steganojs';
 
 const imageBuffer = readFileSync('./path/to/image.png'); // buffer
 const messageToConceal = 'keep it secret, keep it safe'; // string or buffer
@@ -55,7 +55,7 @@ To reveal a message hidden in an image:
 import { readFileSync } from 'fs';
 
 // Import module function
-import { reveal } from '../src';
+import { reveal } from 'steganojs';
 
 const imageBuffer = readFileSync('./path/to/image.png'); // buffer
 

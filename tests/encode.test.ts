@@ -29,7 +29,7 @@ describe('Test PNG', function () {
   it('Can encode a string', async () => {
     for (let i = 0; i < 10; i++) {
       const message = generateRandomString();
-      const file = await readFile(IMAGE_INPUT_1);
+      const file: Buffer = await readFile(IMAGE_INPUT_1);
 
       // Encode message in file
       const encodedFile = conceal(file, message);
