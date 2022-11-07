@@ -50,8 +50,6 @@ test:
 
 deploy:
   stage: deploy
-  # dependencies:
-  #   - build
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
     - npm publish
