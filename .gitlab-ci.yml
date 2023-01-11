@@ -12,6 +12,7 @@ stages:
   - build
   - test
   - deploy
+  - staging
 
 sast:
   stage: test
@@ -33,6 +34,8 @@ print-info:
 build:
   stage: build
   artifacts:
+    paths:
+      - node_modules
     untracked: true
   script:
     - npm ci
@@ -53,3 +56,11 @@ deploy:
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
     - npm publish
+
+test-staging:
+  stage: staging
+  dependencies:
+    - build
+  script:
+    - npm i -D steganojs
+    - npm run test-sta
