@@ -53,12 +53,18 @@ test:
 
 deploy:
   stage: deploy
+  only:
+    - master
+  rules:
+    - if: $(npm show steganojs version) == $(node -p "require('./package.json').version")
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
     - npm publish
 
 test-staging:
   stage: staging
+  only:
+    - master
   dependencies:
     - build
   script:
