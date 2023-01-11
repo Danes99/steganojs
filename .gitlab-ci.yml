@@ -53,8 +53,8 @@ test:
 
 deploy:
   stage: deploy
-  only:
-    - master
+  # only:
+  #   - master
   rules:
     - if: $(npm show steganojs version) == $(node -p "require('./package.json').version")
   script:
