@@ -59,7 +59,7 @@ deploy:
   #   - if: $(npm show steganojs version) == $(node -p "require('./package.json').version")
   script:
     - echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-    - if [ $(npm show steganojs version) == $(node -p "require('./package.json').version") ]; then npm publish; fi
+    - if [ $(npm show steganojs version) != $(node -p "require('./package.json').version") ]; then npm publish; fi
     # - npm publish
 
 test-staging:
